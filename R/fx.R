@@ -14,7 +14,7 @@ t_col <- function(color, percent = 50, name = NULL) {
 
   ## Make new color using input color as base and alpha set by transparency
   t.col <- rgb(rgb.val[1], rgb.val[2], rgb.val[3],
-               max = 255,
+               maxColorValue = 255,
                alpha = (100 - percent) * 255 / 100,
                names = name)
 
@@ -197,6 +197,18 @@ plotNimoT <- function(TT, id = 2, xlim, ylim, dx, xlab, zlab,
   mtext(xlab, side = 3, line = 3)
   mtext(zlab, side = 2, line = 3)
 }
+
+# coderange = c(170:176)
+# asciitable_printable = data.frame(
+#   coderange,
+#   as.raw(coderange),
+#   row.names=rawToChar(as.raw(coderange),multiple=TRUE)
+# )
+# colnames(asciitable_printable) <- c("dec","hex")
+# asciitable_printable
+# chr <- function(n) { rawToChar(as.raw(n)) }
+# chr(176) # 97
+
 
 getNimoT <- function(fPath, sep = ";"){
   Ti <- readNimoT(fPath, sep = sep)

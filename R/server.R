@@ -232,6 +232,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             trsp = 70
           ),
           xlab = c(
+            # "Temperatur (°C)",
             "Temperatur (\u00B0C)",
             "Temperaturgradient (K/m)",
             "Sinkgeschwindigkeit (m/s)"
@@ -638,7 +639,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             cex = 0.75
           )
           addlogo(
-            logo,
+            utils::data("logo", package = "nimoT"),
             xl = 1,
             yl = par()$mar[3] + 3.5,
             size = 0.25

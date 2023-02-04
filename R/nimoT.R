@@ -19,7 +19,7 @@
 #' @import shinyFiles
 #' @importFrom grDevices col2rgb rgb
 #' @importFrom stats runmed smooth.spline
-#' @importFrom utils read.table
+#' @importFrom utils read.table data
 #' @importFrom signal interp1
 #' @importFrom mmand gaussianSmooth
 "_PACKAGE"
@@ -31,9 +31,20 @@
 #'
 #' Lauch the nimoT reader app!
 #'
+#' @param ... Arguments to be passed to the function
 #' @export
 #'
 #' @return shiny application object
 runNimoT <- function(...) {
   shinyApp(ui = shinyAppUI, server = shinyAppServer, ...)
 }
+
+
+#' Logo GEOTEST
+#'
+#' The logo of GEOTEST
+#'
+#' @format a read png object
+#'
+#' @source geotest
+"logo"

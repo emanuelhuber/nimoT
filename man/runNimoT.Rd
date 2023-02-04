@@ -6,6 +6,9 @@
 \usage{
 runNimoT(...)
 }
+\arguments{
+\item{...}{Arguments to be passed to the function}
+}
 \value{
 shiny application object
 }

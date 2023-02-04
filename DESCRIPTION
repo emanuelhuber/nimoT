@@ -2,23 +2,27 @@ Package: nimoT
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+  person("Emanuel", "Huber", email = "emanuel.huber@pm.me",
+  role = c("aut", "cre")))
+Author: Emanuel Huber
+Maintainer: Emanuel Huber <emanuel.huber@pm.me>
+Description: Read and visualise nimoT data
+License:  GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Depends: 
+    base,
     R (>= 2.10)
 Imports:
     shiny,
     shinyFiles,
-	colourpicker,
-    htmltools,
-	yaml,
-	Cairo,
-	mmand,
-	signal,
-	fs
+	  colourpicker,
+	  yaml,
+	  Cairo,
+	  mmand,
+	  signal,
+	  utils,
+	  fs
 RoxygenNote: 7.2.3
+ByteCompile: true

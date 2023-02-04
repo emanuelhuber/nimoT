@@ -8,3 +8,7 @@
 \description{
 This is a shiny project
 }
+\author{
+\strong{Maintainer}: Emanuel Huber \email{emanuel.huber@pm.me}
+
+}
