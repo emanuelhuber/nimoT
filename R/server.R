@@ -20,7 +20,7 @@
 
 # Define server logic required to draw a histogram
 shinyAppServer <- shinyServer(function(input, output, session) {
-  volumes <- c(Home = fs::path_home(),  "R Installation" = R.home(),  getVolumes()())
+  volumes <- c(Home = path_home(),  "R Installation" = R.home(),  getVolumes()())
 
   # shinyFileChoose(input, "file", roots = volumes, session = session)
   # by setting `allowDirCreate = FALSE` a user will not be able to create a new directory
@@ -172,7 +172,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
       }
       for(i in seq_along(defaultsReac()[["geo_v"]][["col"]])){
        print(defaultsReac()[["geo_v"]][["col"]][i])
-       colourpicker::updateColourInput(session, paste0("col", i),  value = defaultsReac()[["geo_v"]][["col"]][i])
+        colourpicker::updateColourInput(session, paste0("col", i),  value = defaultsReac()[["geo_v"]][["col"]][i])
       }
       updateSliderInput(session, "trsp", value =  defaultsReac()[["geo_v"]][["trsp"]])
       updateTabsetPanel(session, "tabset", selected = NULL)
@@ -471,7 +471,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             zmax = zmax,
             cnames = cnames
           )
-          yaml::write_yaml(PARA, fPath_para)
+          write_yaml(PARA, fPath_para)
           # savePara <- input$savePara
           savePara$a <- 0
           # md5 <- tools::md5sum(fPath_para)
@@ -501,7 +501,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
            # savePdf <- 0
            if(printPDF$a > 0){
              print("OK")
-             Cairo::CairoPDF(
+             CairoPDF(
                file = file.path(DIR0(), "NIMOT.pdf"),
                width = 11.7,
                height = 8.3
@@ -638,8 +638,9 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             line = 2,
             cex = 0.75
           )
+
           addlogo(
-            utils::data("logo", package = "nimoT"),
+            logo,
             xl = 1,
             yl = par()$mar[3] + 3.5,
             size = 0.25

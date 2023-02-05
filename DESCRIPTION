@@ -8,6 +8,7 @@ Authors@R: c(
 Author: Emanuel Huber
 Maintainer: Emanuel Huber <emanuel.huber@pm.me>
 Description: Read and visualise nimoT data
+    for GEOTEST.
 License:  GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
@@ -26,3 +27,8 @@ Imports:
 	  fs
 RoxygenNote: 7.2.3
 ByteCompile: true
+Collate:
+    'nimoT.R'
+    'fx.R'
+    'ui.R'
+    'server.R'

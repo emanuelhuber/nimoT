@@ -5,6 +5,7 @@
                                "emanuel.huber@pm.me\n\n",
                                "There is only one function to run in this package:\n",
                                "runNimoT"))
+  utils::data(logo, package = "nimoT")
 }
 
 
@@ -14,14 +15,18 @@
 #' This is a shiny project
 #'
 #' @import graphics
-#' @import Cairo
 #' @import shiny
 #' @import shinyFiles
+#' @import colourpicker
+# @importFrom colourpicker updateColourInput colourInput
+#' @importFrom fs path_home
+#' @importFrom Cairo CairoPDF
 #' @importFrom grDevices col2rgb rgb
 #' @importFrom stats runmed smooth.spline
 #' @importFrom utils read.table data
 #' @importFrom signal interp1
 #' @importFrom mmand gaussianSmooth
+#' @importFrom yaml write_yaml read_yaml
 "_PACKAGE"
 #> [1] "_PACKAGE"
 

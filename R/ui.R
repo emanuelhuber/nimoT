@@ -13,7 +13,7 @@
 
 # Define UI for application that draws a histogram
 # shinyUI(fluidPage(
-shinyAppUI  <- fluidPage(
+shinyAppUI  <- shinyUI(fluidPage(
   tags$head(
     tags$style(type="text/css", ".inline label{ display: table-cell; text-align: center; vertical-align: middle; }
                                    .inline .form-group { display: table-row;}")
@@ -137,4 +137,4 @@ shinyAppUI  <- fluidPage(
       )
     )
   )
-)
+))
