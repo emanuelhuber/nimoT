@@ -73,20 +73,33 @@ addlogo <- function(logo, xl = par()$mar[4],
 
 
 # bottom right outside plot area but relative to plot area
-addLegend <- function(geo_v){
-  sel <- geo_v$name != ""
+addLegend <- function(geo_v, xpos = NULL, cex = 0.75){
+  sel <- geo_v$name != "" & !duplicated(geo_v$name)
   par(xpd = NA)
+  print(paste("SUM SEL = ", paste(sum(sel), collapse = " ; ")))
+  print(paste("widht SEL = ", strwidth(geo_v$name[sel])))
   on.exit(par(xpd = FALSE), add = TRUE)
   lg_pos <- line2user(3, 1)
-  legend(x = line2user(0, side = 2),
+  # legend(x = line2user(0, side = 2),
+  if(is.null(xpos)){
+    fac <- 1 / par()$pin[1] * diff(par()$usr[1:2])
+    xpos <- par()$usr[2] + (par()$omi[4] + par()$mai[4] - par()$din[1] )*fac
+  }
+  legend(x = xpos,
          y = line2user(1, side = 1),
          legend = geo_v$name[sel],
          fill  = geo_v$col[sel],
-         horiz = TRUE,
-         bty = "n"
+         # horiz = TRUE,
+         bty = "n",
+         ncol = sum(sel),
+         text.width = strwidth(geo_v$name[sel]),
+         cex  = cex
 
   )
 }
+
+# u <- c("lkjlkj", "kd", " lkjkj  dsf", " lkj lkj lkjlj ljljkl")
+# strwidth(u)
 
 # diff(grconvertX(c(0, par()$din[2] ), from = "inches", to = "user"))
 # u <- diff(grconvertX(par()$usr[1:2], from = "user", to = "inches"))
@@ -178,7 +191,8 @@ plotNimoT <- function(TT, id = 2, xlim, ylim, dx, xlab, zlab,
                       hlines, geo_v, col_abline = "grey40", zlabels = FALSE,
                       col = c('#1f77b4', '#ff7f0e', '#2ca02c', '#d62728',
                               '#9467bd', '#8c564b', '#e377c2',
-                              '#7f7f7f', '#bcbd22', '#17becf'),sel = NULL
+                              '#7f7f7f', '#bcbd22', '#17becf'),sel = NULL,
+                      cex = 0.75
 ){
   if(is.null(sel)) sel <- seq_along(TT)
   plot(0, 0, type = "n", ylim = ylim, xlim = xlim, bty = "n", axes = FALSE,
@@ -192,10 +206,12 @@ plotNimoT <- function(TT, id = 2, xlim, ylim, dx, xlab, zlab,
     if(k %in% sel)     lines(TT[[k]][, id], TT[[k]][, 1], lwd = 3, col = col[k])
   }
   box(lwd = 1.15)
-  axis(2, labels = zlabels, at = hlines, tck = -0.025, lwd.ticks = 1.15)
-  axis(3, at = vlines, tck = -0.025, lwd.ticks = 1.15)
-  mtext(xlab, side = 3, line = 3)
-  mtext(zlab, side = 2, line = 3)
+  axis(2, labels = zlabels, at = hlines, tck = -0.025, lwd.ticks = 1.15,
+       cex.axis = cex)
+  axis(3, at = vlines, tck = -0.025, lwd.ticks = 1.15,
+       cex.axis = cex)
+  mtext(xlab, side = 3, line = 3, cex = cex)
+  mtext(zlab, side = 2, line = 3, cex = cex)
 }
 
 # coderange = c(170:176)

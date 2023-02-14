@@ -499,6 +499,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
         if (length(input$checkGroup) > 0) {
 
            # savePdf <- 0
+          cex <- 1
            if(printPDF$a > 0){
              print("OK")
              CairoPDF(
@@ -506,38 +507,40 @@ shinyAppServer <- shinyServer(function(input, output, session) {
                width = 11.7,
                height = 8.3
              )
+             cex <- 0.75
              # printPDF$a <-0
            }
-           # observeEvent(input$savePDF, {
-           #   print(paste("Print_PDF: ", savePdf))
-           #   Cairo::CairoPDF(
-           #     file = file.path(DIR0(), "NIMOT.pdf"),
-           #     width = 11.7,
-           #     height = 8.3
-           #   )
-           #
-           # })
-          # if (length(input$savePDF) > 0 && input$savePDF > savePdf){
-          #   # savePdf <- input$savePDF
-          #   print(paste("Print_PDF: ", savePdf))
-          #   Cairo::CairoPDF(
-          #     file = file.path(DIR0(), "NIMOT.pdf"),
-          #     width = 11.7,
-          #     height = 8.3
-          #   )
-          #
-          # }
+
 
           addzlabels <- TRUE
           addzlab <- zlab
+          mar <- c(1, 1.1, 4.1, 0.5)
+          mar1 <- mar
+          mar2 <- mar
+          mar3 <- mar
+          if(length(input$checkGroup) == 2 && printPDF$a > 0){
+            mar1 <- mar + c(0, 10, 0, 0)
+            mar2 <- mar + c(0, 0, 0, 10)
+
+          }
+          if(length(input$checkGroup) == 1 && printPDF$a > 0) mar1 <- mar + c(0, 20, 0, 20)
+          funpar <- function(it, mar = list(mar1, mar2, mar3)){
+            if(it == 1) par(mar = mar[[1]])
+            if(it == 2) par(mar = mar[[2]])
+            if(it == 3) par(mar = mar[[3]])
+          }
+          it <- 0
+
           par(
             mfrow = c(1, length(input$checkGroup)),
-            mar = c(1, 1.1, 4.1, 0.5),
+            mar = mar,
             oma = oma,
             cex = 1
           )
           # temperature
           if ("1" %in% input$checkGroup) {
+            it <- it + 1
+            funpar(it)
             plotNimoT(
               TT,
               id = 2,
@@ -549,7 +552,8 @@ shinyAppServer <- shinyServer(function(input, output, session) {
               hlines,
               geo_v,
               zlabels = addzlabels,
-              sel = input$checkgroup_plot1
+              sel = input$checkgroup_plot1,
+              cex = cex
             )
             addzlabels <- FALSE
             addzlab <- ""
@@ -560,16 +564,19 @@ shinyAppServer <- shinyServer(function(input, output, session) {
                 "bottomright",
                 legend = cnames,
                 lwd = 2,
-                col = mathplotlib_col[seq_along(cnames)]
+                col = mathplotlib_col[seq_along(cnames)],
+                cex = cex
               )
             }
-            if (add_legend_geol) {
-              addLegend(geo_v)
-              add_legend_geol <- FALSE
-            }
+            # if (add_legend_geol) {
+            #   addLegend(geo_v)
+            #   add_legend_geol <- FALSE
+            # }
           }
           # temperature gradient
           if ("2" %in% input$checkGroup) {
+            it <- it + 1
+            funpar(it)
             plotNimoT(
               TT,
               id = 4,
@@ -581,7 +588,8 @@ shinyAppServer <- shinyServer(function(input, output, session) {
               hlines,
               geo_v,
               zlabels = addzlabels,
-              sel = input$checkgroup_plot2
+              sel = input$checkgroup_plot2,
+              cex = cex
             )
             addzlabels <- FALSE
             addzlab <- ""
@@ -591,16 +599,19 @@ shinyAppServer <- shinyServer(function(input, output, session) {
                 "bottomright",
                 legend = cnames,
                 lwd = 2,
-                col = mathplotlib_col[seq_along(cnames)]
+                col = mathplotlib_col[seq_along(cnames)],
+                cex = cex
               )
             }
-            if (add_legend_geol) {
-              addLegend(geo_v)
-              add_legend_geol <- FALSE
-            }
+            # if (add_legend_geol) {
+            #   addLegend(geo_v)
+            #   add_legend_geol <- FALSE
+            # }
           }
           # velocity
           if ("3" %in% input$checkGroup) {
+            it <- it + 1
+            funpar(it)
             plotNimoT(
               TT,
               id = 5,
@@ -612,7 +623,8 @@ shinyAppServer <- shinyServer(function(input, output, session) {
               hlines,
               geo_v,
               zlabels = addzlabels,
-              sel = input$checkgroup_plot3
+              sel = input$checkgroup_plot3,
+              cex = cex
             )
             addzlabels <- FALSE
             addzlab <- ""
@@ -622,14 +634,20 @@ shinyAppServer <- shinyServer(function(input, output, session) {
                 "bottomright",
                 legend = cnames,
                 lwd = 2,
-                col = mathplotlib_col[seq_along(cnames)]
+                col = mathplotlib_col[seq_along(cnames)],
+                cex = cex
               )
             }
-            if (add_legend_geol) {
-              addLegend(geo_v)
-              add_legend_geol <- FALSE
-            }
+            # if (add_legend_geol) {
+            #   addLegend(geo_v)
+            #   add_legend_geol <- FALSE
+            # }
           }
+          par(mar = mar)
+          # if (add_legend_geol) {
+          #   addLegend(geo_v)
+          #   add_legend_geol <- FALSE
+          # }
           graphics::mtext(
             paste(input$proj_nr, "\n", input$proj_lab),
             side = 3,
@@ -647,8 +665,13 @@ shinyAppServer <- shinyServer(function(input, output, session) {
           )
           graphics::title(main = plot_title, outer = TRUE)
 
+          xpos <- NULL #par()$usr[2] + (par()$omi[4] + par()$mai[4] - par()$din[1] )*fac
+          if(length(input$checkGroup) == 3){
+            fac <- 1 / par()$pin[1] * diff(par()$usr[1:2])
+            xpos <- par()$usr[2] + (par()$omi[4] + par()$omi[2] + par()$mai[4] + par()$mai[2] - par()$din[1] )*fac
+          }
           if (add_legend_geol) {
-            addLegend(geo_v)
+            addLegend(geo_v, cex = cex, xpos = xpos)
             add_legend_geol <- FALSE
           }
 
