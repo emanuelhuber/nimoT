@@ -488,7 +488,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
 
 
 
-        oma <- c(0, 3, 4, 2)
+        oma <- c(0, 4, 4, 2)
         # print(getwd())
         if (add_legend_geol) {
           oma[1] <- oma[1] + 4
@@ -653,14 +653,14 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             side = 3,
             outer = TRUE,
             adj = 0,
-            line = 2,
+            line = 1,
             cex = 0.75
           )
 
           addlogo(
             logo,
             xl = 1,
-            yl = par()$mar[3] + 3.5,
+            yl = par()$mar[3] + 2.5,
             size = 0.25
           )
           graphics::title(main = plot_title, outer = TRUE)

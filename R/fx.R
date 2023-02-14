@@ -144,7 +144,9 @@ smoothData <- function(x, k = 11, sigma = 15){
   x2 <- stats::smooth.spline(x1)$y
   x3 <-  mmand::gaussianSmooth(x2, sigma  = sigma)
 }
-getGrad <- function(x, d,  k = 21, sigma = 25){
+getGrad <- function(x, d,  k = 5, sigma =10){
+  # dest <- doremi::calculate.gold(time = d, signal = x, embedding = 5, n = 2)
+
   gradx <- numeric(length(x))
   d <- mean(diff(d))
   x <- smoothData(x, k = k, sigma = sigma)

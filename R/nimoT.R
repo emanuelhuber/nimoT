@@ -18,6 +18,7 @@
 #' @import shiny
 #' @import shinyFiles
 #' @import colourpicker
+#' @import doremi
 # @importFrom colourpicker updateColourInput colourInput
 #' @importFrom fs path_home
 #' @importFrom Cairo CairoPDF

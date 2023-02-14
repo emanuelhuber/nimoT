@@ -24,7 +24,8 @@ Imports:
 	  mmand,
 	  signal,
 	  utils,
-	  fs
+	  fs,
+	  doremi
 RoxygenNote: 7.2.3
 ByteCompile: true
 Collate:
