@@ -563,7 +563,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
               graphics::legend(
                 "bottomright",
                 legend = cnames,
-                lwd = 2,
+                lwd = 1.5,
                 col = mathplotlib_col[seq_along(cnames)],
                 cex = cex
               )
@@ -598,7 +598,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
               graphics::legend(
                 "bottomright",
                 legend = cnames,
-                lwd = 2,
+                lwd = 1.5,
                 col = mathplotlib_col[seq_along(cnames)],
                 cex = cex
               )
@@ -633,7 +633,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
               graphics::legend(
                 "bottomright",
                 legend = cnames,
-                lwd = 2,
+                lwd = 1.5,
                 col = mathplotlib_col[seq_along(cnames)],
                 cex = cex
               )
