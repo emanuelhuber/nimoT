@@ -205,7 +205,7 @@ plotNimoT <- function(TT, id = 2, xlim, ylim, dx, xlab, zlab,
          v = vlines,
          col = col_abline)
   for(k in seq_along(TT)){
-    if(k %in% sel)     lines(TT[[k]][, id], TT[[k]][, 1], lwd = 3, col = col[k])
+    if(k %in% sel)     lines(TT[[k]][, id], TT[[k]][, 1], lwd = 1.5, col = col[k])
   }
   box(lwd = 1.15)
   axis(2, labels = zlabels, at = hlines, tck = -0.025, lwd.ticks = 1.15,
