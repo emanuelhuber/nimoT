@@ -110,7 +110,7 @@ addLegend <- function(geo_v, xpos = NULL, cex = 0.75){
 # win * diff(par()$usr[1:2])/u
 
 
-evalNimoT <- function(Ti, dz = 0.1,  k = 21, sigma = 25){
+evalNimoT <- function(Ti, dz = 0.1,  k = 5, sigma = 0){
 
   # x <- Ti[, 3]
   # sel <- which(x >= cummax(x)) #seq_along(x) >= which(x >= cummax(x))[1]
@@ -142,8 +142,10 @@ evalNimoT <- function(Ti, dz = 0.1,  k = 21, sigma = 25){
 smoothData <- function(x, k = 11, sigma = 15){
   x1 <- stats::runmed(x, k = 11)
   x2 <- stats::smooth.spline(x1)$y
-  x3 <-  mmand::gaussianSmooth(x2, sigma  = sigma)
+  if(sigma > 0)   x2 <-  mmand::gaussianSmooth(x2, sigma  = sigma)
+  return(x2)
 }
+
 getGrad <- function(x, d,  k = 5, sigma =10){
   # dest <- doremi::calculate.gold(time = d, signal = x, embedding = 5, n = 2)
 
