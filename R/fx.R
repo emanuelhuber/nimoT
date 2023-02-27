@@ -236,11 +236,12 @@ getNimoT <- function(fPath, sep = ";"){
 getNimoTFiles <- function(DIR){
   FILES0 <- list.files(DIR , pattern  = "(\\.csv)$")
   sel <- grepl('Log[0-9]+', FILES0)
-  if(any(sel)){
-    FILES <- FILES0[sel]
-  }else{
-    FILES <- FILES0
-  }
+  # if(any(sel)){
+  #  FILES <- FILES0[sel]
+  # }else{
+  #  FILES <- FILES0
+  # }
+  FILES <- FILES0
   #
   # if(length(FILES) == 1){
   #   ID <- 0
