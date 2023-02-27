@@ -561,7 +561,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             if (all(cnames != "") &&
                 !is.null(input$legend_temp) && input$legend_temp) {
               graphics::legend(
-                "bottomright",
+                "bottomleft",
                 legend = cnames,
                 lwd = 1.5,
                 col = mathplotlib_col[seq_along(cnames)],
@@ -596,7 +596,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             if (all(cnames != "") &&
                 !is.null(input$legend_grad) && input$legend_grad) {
               graphics::legend(
-                "bottomright",
+                "bottomleft",
                 legend = cnames,
                 lwd = 1.5,
                 col = mathplotlib_col[seq_along(cnames)],
@@ -631,7 +631,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
             if (all(cnames != "") &&
                 !is.null(input$legend_vel) && input$legend_vel) {
               graphics::legend(
-                "bottomright",
+                "bottomleft",
                 legend = cnames,
                 lwd = 1.5,
                 col = mathplotlib_col[seq_along(cnames)],
