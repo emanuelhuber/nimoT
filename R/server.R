@@ -108,10 +108,10 @@ shinyAppServer <- shinyServer(function(input, output, session) {
       for (k in seq_along(TT)) {
         # Temperatur gradient
         TT[[k]][, 4] <-
-          getGrad(TT[[k]][, 2], TT[[k]][, 1], k = 5, sigma = 0)
+          getGrad(TT[[k]][, 2], TT[[k]][, 1], k = 5, sigma = 5)
         # velocity
         TT[[k]][, 5] <-
-          getGrad(TT[[k]][, 3], TT[[k]][, 1], k = 5, sigma = 0)
+          getGrad(TT[[k]][, 3], TT[[k]][, 1], k = 5, sigma = 5)
       }
       # print("TT TT TT")
 
