@@ -750,8 +750,8 @@ shinyAppServer <- shinyServer(function(input, output, session) {
 
   output$stat <- renderUI({
     TT <- TT0()
-    lapply(TT, function(x)
-      print(summary(x[, 4])))
+    #lapply(TT, function(x)
+    #  print(summary(x[, 4])))
     tagList(
       h4("Temperatur"),
       lapply(TT, function(x)
