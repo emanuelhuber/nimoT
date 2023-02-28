@@ -165,9 +165,9 @@ shinyAppServer <- shinyServer(function(input, output, session) {
     if (!is.null(list_curves()) && length(list_curves()) > 0) {
       sapply(curve_names(), print)
       tagList(# textInput("name1", "Name 1", value = ""),
-        lapply(seq_along(curve_names()),  function(i, x = curve_names()) {
-          textInput(paste0("cname_", i), paste0("Name ", i), value = x[[i]])
-        }, curve_names()))
+        lapply(seq_along(curve_names()),  function(i, x = curve_names(), fname ) {
+          textInput(paste0("cname_", i),  fname[i], value = x[[i]])
+        }, curve_names(), fname = basename(fp())))
     }
   })
 
