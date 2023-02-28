@@ -95,6 +95,17 @@ shinyAppServer <- shinyServer(function(input, output, session) {
 
     }
   })
+  
+  fp <- reactive({
+    if (is.null(DIR0())) {
+      cat("No directory has been selected (shinyDirChoose)")
+      return(NULL)
+    } else {
+      DIR <- DIR0()
+      fPaths <- getNimoTFiles(DIR)
+      return(fPaths)
+    }
+  })
 
   TT0 <- reactive({
     if (is.null(DIR0())) {
@@ -138,7 +149,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
     clist <- list()
     if (is.null(defaultsReac())) {
       for (i in seq_along(TT0())) {
-        clist[[paste0("Curve ", i)]] <- paste0(i)
+        clist[[paste0("Curve ", i)]] <- basename(fp()[i])
       }
       return(clist)
     } else{
@@ -243,7 +254,7 @@ shinyAppServer <- shinyServer(function(input, output, session) {
           zlab = "Tiefe (m)",
           dz = diff(pretty(ylim, n = 10))[1],
           zmax = zmax,
-          cnames = rep("", length(list_curves()))
+          cnames = basename(fp()) #rep("", length(list_curves()))
         )
         defaults[["dx"]] = c(diff(pretty(defaults[["xlim1"]], n = 10))[1],
                              diff(pretty(defaults[["xlim2"]], n = 10))[1],
